@@ -1,5 +1,6 @@
 import './style.css';
 import success from '../assests/Successsuccess.svg'
+import pending from '../assests/Pending.svg'
 import failed from "../assests/broken-credit-card-debt-bankruptcy-failed-money-transaction-vector-stock-illustration-262717746.jpeg"
 import React from 'react';
 export default function Confirm({status}) {
@@ -12,10 +13,14 @@ export default function Confirm({status}) {
             setImg(success)
             setConfirmText("Thanks for your order!")
             setConfrimDes("Yayyy! You successfully made a payment with Hyperswitch. If its a real store, your items would have been on their way.")
-        } else{
+        } else if (status=="failed"){
             setImg(failed)
             setConfirmText("Payment Failed!")
             setConfrimDes("Oops! You failed to make a payment with Hyperswitch. If its a real store, order wouldn't have been placed")
+        } else if (status=="processing"){
+            setImg(pending)
+            setConfirmText("Thanks for your order!")
+            setConfrimDes("Your payment is processing with Hyperswitch. If its a real store, your order would soon on be on their way.")
         }
     },[status])
   return (

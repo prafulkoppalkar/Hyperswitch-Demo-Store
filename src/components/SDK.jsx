@@ -1,23 +1,28 @@
 import './style.css';
 import React, { useEffect, useState } from "react";
 import {
-  PaymentElement, useElements, 
+  PaymentElement, useWidgets, 
 } from "@juspay-tech/react-hyper-js";
 import { useHyper } from "@juspay-tech/react-hyper-js";
 
 export default function SDK({options1}) {
     const stripe = useHyper()
-    const elements = useElements()
+    const elements = useWidgets()
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    // React.useEffect(()=>{
+    //   console.log("cliensecret", clientSecret)
+    //   elements.update({layout:"accordion"})
+    // },[clientSecret])
     const handleSubmit = async (e) => {
-        console.log("ELEMENTS", elements)
         e.preventDefault();
         if (!stripe || !elements) {
           // Stripe.js has not yet loaded.
           // Make sure to disable form submission until Stripe.js has loaded.
           return;
         }
+        console.log("ELEMENTS", elements)
+        console.log("loading")
         setIsLoading(true);
         const { error } = await stripe.confirmPayment({
           elements,
@@ -27,12 +32,6 @@ export default function SDK({options1}) {
           },
         });
         console.log("ERORR", error)
-    
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Otherwise, your customer will be redirected to
-        // your `return_url`. For some payment methods like iDEAL, your customer will
-        // be redirected to an intermediate site first to authorize the payment, then
-        // redirected to the `return_url`.
         if (error.type === "card_error" || error.type === "validation_error") {
             setMessage(error.message);
         }
@@ -43,9 +42,9 @@ export default function SDK({options1}) {
                 setMessage("An unexpected error occurred.");
             }
         }
-      
         setIsLoading(false);
       };
+
       useEffect(() => {
         if (!stripe) {
           return;
@@ -84,7 +83,7 @@ export default function SDK({options1}) {
                 <div id="payment-form">
                 {ui}
                 <button id="submit" type="submit" className="checkoutButton" >
-          {isLoading ? <div className="spinner" id="spinner"></div> : <span id="button-text">Pay $20.00</span>}
+          {isLoading ? <div className="spinner" id="spinner"></div> : <span id="button-text">Pay 200.00</span>}
         </button>
       {message && <div id="payment-message">{message}</div>}
       </div>

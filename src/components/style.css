@@ -83,7 +83,7 @@
 .checkoutButton{
     height: 48px;
     border-radius: 25px;
-    width: 400px;
+    width: 100%;
     border: transparent;
     background: #006DF9;
     color: #ffffff;
@@ -258,7 +258,7 @@
     width:100% ;
 }
 #payment-form{
-    max-width: 500px;
+    max-width: 560px;
     width: 100%;
 }
 .cartItems {
@@ -420,7 +420,7 @@
 }
 
 .select {
-    display: none;
+    display: flex;
     flex-direction: row;
     column-gap: 5px;
     justify-content: center;
@@ -458,8 +458,9 @@
       align-items: center;
       min-height: 86vh;
       height: auto;
-        overflow-y: scroll;
-        gap: 1%;
+      overflow-y: scroll;
+      gap: 1%;
+      overflow-x: hidden;
     }
     .Footer{
         padding: 2%;
@@ -471,7 +472,8 @@
         width: 95%;
     }
     .body1{
-        width:100%
+        width:100%;
+        overflow-y:hidden;
     }
     .body2{
         width:100%
@@ -484,6 +486,7 @@
     }
     .GetEarlyAccess {
         width: 102%;
+        display: none;
     }
     .Navbar{
         padding-left: 10px;

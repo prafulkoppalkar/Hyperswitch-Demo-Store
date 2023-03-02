@@ -6,8 +6,69 @@ import Workspace from './components/Workspace'
 import React from "react"
 
 function App() {
-  const [clientSecret, setClientSecret] = React.useState("");
+  const [clientSecret, setClientSecret] = React.useState("pay_aJYDi517PIOMgLW7owcl_secret_9IEA0CX7ksFSnlO4Dj8r");
+  const [savedMethods, setSavedMethods] = React.useState([])
+  const [country, setCountry] = React.useState("US")
+
+  // console.log("country", country)
+  const countries = [
+    {
+      isoAlpha3: "USA",
+      currency: "USD",
+      countryName: "United States",
+      isoAlpha2: "US",
+    },
+    {
+      isoAlpha3: "CHE",
+      currency: "CHF",
+      countryName: "Switzerland",
+      isoAlpha2: "CH",
+    },
+    {
+      isoAlpha3: "DEU",
+      currency: "EUR",
+      countryName: "Germany",
+      isoAlpha2: "DE",
+    },
+    {
+      isoAlpha3: "NLD",
+      currency: "EUR",
+      countryName: "Netherlands",
+      isoAlpha2: "NL",
+    },
+    {
+      isoAlpha3: "AUS",
+      currency: "AUD",
+      countryName: "Australia",
+      isoAlpha2: "AU",
+    },
+    {
+      isoAlpha3: "AUT",
+      currency: "EUR",
+      countryName: "Austria",
+      isoAlpha2: "AT",
+    },
+    {
+      isoAlpha3: "GBR",
+      currency: "GBP",
+      countryName: "United Kingdom",
+      isoAlpha2: "GB",
+    },
+    {
+      isoAlpha3: "CAN",
+      currency: "CAD",
+      countryName: "Canada",
+      isoAlpha2: "CA",
+    },
+  ]
+
+  const getCurrency = () =>{
+    const filter = countries.filter((item)=> item.isoAlpha2 == country)
+    const curr = filter[0].currency
+    return curr
+  }
   React.useEffect(() => {
+    // console.log("inside")
     // Create PaymentIntent as soon as the page loads
     fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/create-payment-intent", {
       method: "POST",
@@ -15,15 +76,34 @@ function App() {
       body: JSON.stringify(
         { 
           amount: 20000, 
-          currency: "USD",
+          currency: getCurrency(),
+          shipping:{
+            address:{
+              country:country,
+              state: "test",
+              zip: "571201",
+              line1: "test line 1",
+              city: "test city",
+              first_name:"Bopanna MJ",
+            },
+            phone: {
+              number:"+918105528922",
+              counrty_code:country
+            }
+          },
           metadata: {
             "order_details": {
                 "product_name": "Apple iphone 15",
                 "quantity": 1
             }
           },
+          billing: {
+            address: {
+              country: country,
+            },
+          },
           authentication_type: 'no_three_ds', 
-          customer_id: "tester"
+          customer_id: "Bopanna12"
         }),
     })
       .then((res) => res.json())
@@ -31,12 +111,30 @@ function App() {
         // console.log("client",data.clientSecret)
         data.clientSecret ? setClientSecret(data.clientSecret) : setClientSecret("pay_aJYDi517PIOMgLW7owcl_secret_9IEA0CX7ksFSnlO4Dj8r")
       })
+  }, [country]);
+
+  React.useEffect(() => {
+    // get saved cards fro a customer
+    fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/retrieve-customer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        { 
+          customer_id: "Bopanna12"
+        }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("abcccc",data.customer_payment_methods)
+        data.customer_payment_methods ? setSavedMethods(data.customer_payment_methods) : setSavedMethods([])
+      })
   }, []);
+
 
   return (
     <div className="App">
-      <Navbar />
-      <Workspace clientSecret={clientSecret}/>
+      <Navbar countries={countries} setCountry={setCountry}/>
+      <Workspace clientSecret={clientSecret} savedMethods={savedMethods} />
       <Footer />
     </div>
   );

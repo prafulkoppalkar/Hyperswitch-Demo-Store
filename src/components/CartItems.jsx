@@ -17,7 +17,7 @@ export default function CartItems() {
                 <div className='props'>Color: <span className='value'>Black</span></div>
             </div>
         </div>
-        <div>$ 10.00</div>
+        <div> 100.00</div>
     </div>
     <div className='Item'>
         <div className='ItemContainer'>
@@ -32,11 +32,11 @@ export default function CartItems() {
                 <div className='props'>Color: <span className='value'>Black</span></div>
             </div>
         </div>
-        <div>$ 10.00</div>
+        <div> 100.00</div>
     </div>
     <div className='ItemTotal'>
         <div className='total'>Total Amount</div>
-        <div>$ 20.00</div>
+        <div> 200.00</div>
     </div>
   </div>)
 }

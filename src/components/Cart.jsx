@@ -2,6 +2,7 @@ import './style.css';
 import './CartItems'
 import CartItems from './CartItems';
 export default function Cart({setOpenSDK}) {
+  var ele = document.getElementsByClassName('select')
   return (
   <div className="Cart">
     <div className='orderSummary'>Order summary (2)</div>
@@ -15,7 +16,12 @@ export default function Cart({setOpenSDK}) {
         </div>
         
         <div className='buttonSection'>
-            <button className='CheckoutButton' onClick={()=>{setOpenSDK(true)}}>Checkout with Hyperswitch</button>
+            <button className='CheckoutButton' onClick={()=>{
+              // document.getElementById("uniqueSelect").style.display = "none"
+              // document.getElementById("earlyAccess").style.display = "flex"
+              // document.getElementById("earlyAccess").style.justifyContent = "end"
+              setOpenSDK(true)
+            }}>Checkout with Hyperswitch</button>
         </div>
     </div>
   </div>
