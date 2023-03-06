@@ -7,7 +7,7 @@ import React from "react"
 
 function App() {
   const [clientSecret, setClientSecret] = React.useState("pay_aJYDi517PIOMgLW7owcl_secret_9IEA0CX7ksFSnlO4Dj8r");
-  const [savedMethods, setSavedMethods] = React.useState([])
+  const [savedMethods, setSavedMethods] = React.useState(null)
   const [country, setCountry] = React.useState("US")
 
   const countries = [
@@ -68,6 +68,9 @@ function App() {
   }
   React.useEffect(() => {
     // Create PaymentIntent as soon as the page loads
+    // This fetch call is made to merchant server which inturn make sever to sever call 
+      // to Hypernode/Hyperswitch Backend to get the response.
+    // Please refer the link shared in the Readme file to setup merchant server
     fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -113,6 +116,9 @@ function App() {
 
   React.useEffect(() => {
     // Get saved cards for a customer
+    // This fetch call is made to merchant server which inturn makes sever to sever call 
+      // to Hypernode/Hyperswitch Backend to get the response.
+    // Please refer the link shared in the Readme file to setup merchant server
     fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/retrieve-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
