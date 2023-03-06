@@ -24,7 +24,6 @@ export default function Navbar({countries , setCountry}) {
             </a>
         </div>
         <div className='select' id="uniqueSelect">
-            {/* <img className="flag" src={usaflag} alt='' width="30px" /> */}
             <select className='countrySelect' onChange={handleChange}>
                 {countries.map((item)=>(
                     <option value={item.isoAlpha2}>{item.countryName} &nbsp;({item.currency})</option>

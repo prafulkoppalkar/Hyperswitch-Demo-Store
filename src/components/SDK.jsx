@@ -10,11 +10,9 @@ export default function SDK({options1}) {
     const elements = useWidgets()
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    // React.useEffect(()=>{
-    //   console.log("cliensecret", clientSecret)
-    //   elements.update({layout:"accordion"})
-    // },[clientSecret])
+
     const handleSubmit = async (e) => {
+        // Function to call confirmPayment Api
         e.preventDefault();
         if (!stripe || !elements) {
           // Stripe.js has not yet loaded.
@@ -22,7 +20,6 @@ export default function SDK({options1}) {
           return;
         }
         console.log("ELEMENTS", elements)
-        console.log("loading")
         setIsLoading(true);
         const { error } = await stripe.confirmPayment({
           elements,
@@ -57,9 +54,8 @@ export default function SDK({options1}) {
         if (!clientSecret) {
           return;
         }
-    
+        // Retrive the Payment Intent to get the status of the request
         stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-          console.log("inisde effect", paymentIntent);
           switch (paymentIntent.status) {
             case "succeeded":
               setMessage("Payment succeeded!");
@@ -76,18 +72,22 @@ export default function SDK({options1}) {
           }
         });
       }, [stripe]);
-      var ui = <PaymentElement id="paymentElement" options={options1} />;
+      var ui = 
+      // Load the required element from the package (ex: here choosen the unified checkout)
+      <PaymentElement id="paymentElement" options={options1} />;
     return (
-        <div className="SDK">
-            <form id="payment-form" onSubmit={handleSubmit}>
-                <div id="payment-form">
-                {ui}
-                <button id="submit" type="submit" className="checkoutButton" >
-          {isLoading ? <div className="spinner" id="spinner"></div> : <span id="button-text">Pay 200.00</span>}
-        </button>
-      {message && <div id="payment-message">{message}</div>}
-      </div>
-      </form>
+    <div className="SDK">
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <div id="payment-form">
+          {ui}
+          {/* Render PayNow button to hit PaymentConfirm API */}
+          <button id="submit" type="submit" className="checkoutButton" >
+            {isLoading ? <div className="spinner" id="spinner"></div> : <span id="button-text">Pay 200.00</span>}
+          </button>
+          {/* Display the error message if any from retrieve payment intent */}
+          {message && <div id="payment-message">{message}</div>}
         </div>
+      </form>
+    </div>
     )
 }

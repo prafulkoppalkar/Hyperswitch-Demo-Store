@@ -7,6 +7,7 @@ import SDK from './SDK'
 import CartItems from './CartItems';
 import Confirm from './Confirm';
 function ElementsComp ({options, options1}) {
+  // Pass the publishable key to loadHyper and pass this instance to the Elements wrapper
   const hyperPromise = loadHyper("pk_snd_3b33cd9404234113804aa1accaabe22f");
   return (
     <Elements options={options} stripe={hyperPromise}>
@@ -15,10 +16,12 @@ function ElementsComp ({options, options1}) {
   )
 }
 export default function Workspace({clientSecret, savedMethods}) {
-  console.log("client",clientSecret)
     const stripe = useHyper()
     const [showSDK , setShowSDK] = React.useState(false)
     const [confirmStatus , setStatus] = React.useState("")
+    // Create options object with clientSecret with required customization fields
+    // Add Rules to make Ui customization to Hyperswicth SDK 
+    // Refer console for warnings and errors 
     const [options, setOptions] = React.useState({
       clientSecret,
       appearance: {
@@ -30,9 +33,6 @@ export default function Workspace({clientSecret, savedMethods}) {
         },
         rules: {
           '.PickerItem--selected':{
-            // border: "1px solid #000000",
-            // color:"#ffffff",
-            // backgroundColor:"#000000",
             background: "rgba(0, 109, 249, 0.1)",
             border: "1px solid #006DF9",
             borderRadius: "112px",
@@ -40,19 +40,14 @@ export default function Workspace({clientSecret, savedMethods}) {
             fontWeight: "700",
           },
           '.PickerItem':{
-            // backgroundColor:"#7e787817",
             borderRadius: "30px",
             border: "1px solid #7e787817",
           },
           '.PickerItem:hover':{
-            // backgroundColor:"#7e787817",
             borderRadius: "30px",
             border: "1px solid #ffffff",
           },
           '.PickerItem--selected:hover':{
-            // border: "1px solid #000000",
-            // color:"#ffffff",
-            // backgroundColor:"#000000",
             background: "rgba(0, 109, 249, 0.1)",
             border: "1px solid #006DF9",
             borderRadius: "30px",
@@ -115,7 +110,6 @@ export default function Workspace({clientSecret, savedMethods}) {
             color: "#0c0b0b",
             fontWeight: "700",
           },
-          // See all supported class names and selector syntax below
         },
       },
       fonts: [
@@ -140,8 +134,6 @@ export default function Workspace({clientSecret, savedMethods}) {
       loader: "always",
     })
 
-    // console.log(">>>>methods",savedMethods)
-    // console.log(">>>>client",clientSecret)
     const options1 = {
       fields: {
         billingDetails: {
@@ -159,6 +151,7 @@ export default function Workspace({clientSecret, savedMethods}) {
       },
       
       wallets: {
+        // Make sure you change this to your payment completion page
         walletReturnUrl: "https://demo-hyperswitch.netlify.app/",
         applePay: "auto",
         googlePay: "auto",
@@ -168,17 +161,13 @@ export default function Workspace({clientSecret, savedMethods}) {
           height: 48
         }
       },
-      // paymentMethodOrder: ["cards", "klarna"],
       customerPaymentMethods:savedMethods,
     };
 
     React.useEffect(()=>{
-      // console.log("inside1")
       setOptions({...options, clientSecret})
     }, [clientSecret])
 
-    // console.log(">>>>options1",options1)
-    // console.log(">>>>options",options)
     React.useEffect(() => {
       if (!stripe) {
         return;
@@ -195,6 +184,7 @@ export default function Workspace({clientSecret, savedMethods}) {
 
     var elements = 
       <div className='elements'>
+        {/* Pass the options as a prop to the elements wrapper */}
         {savedMethods && <ElementsComp key={options.clientSecret} options={options} options1={options1}/>}
       </div>
     var ele = showSDK && !confirmStatus ? (

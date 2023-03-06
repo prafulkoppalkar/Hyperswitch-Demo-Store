@@ -10,7 +10,6 @@ function App() {
   const [savedMethods, setSavedMethods] = React.useState([])
   const [country, setCountry] = React.useState("US")
 
-  // console.log("country", country)
   const countries = [
     {
       isoAlpha3: "USA",
@@ -68,7 +67,6 @@ function App() {
     return curr
   }
   React.useEffect(() => {
-    // console.log("inside")
     // Create PaymentIntent as soon as the page loads
     fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/create-payment-intent", {
       method: "POST",
@@ -108,13 +106,13 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log("client",data.clientSecret)
+        // Set clientSecret from the response 
         data.clientSecret ? setClientSecret(data.clientSecret) : setClientSecret("pay_aJYDi517PIOMgLW7owcl_secret_9IEA0CX7ksFSnlO4Dj8r")
       })
   }, [country]);
 
   React.useEffect(() => {
-    // get saved cards fro a customer
+    // Get saved cards for a customer
     fetch("https://u4kkpaenwc.execute-api.ap-south-1.amazonaws.com/default/retrieve-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -125,7 +123,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log("abcccc",data.customer_payment_methods)
+        //Set customer saved cards from the response 
         data.customer_payment_methods ? setSavedMethods(data.customer_payment_methods) : setSavedMethods([])
       })
   }, []);
