@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Hyperswitch Unified Checkout Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Hyperswitch demo app is a two-page website that showcases the capabilities of the Hyperswitch SDK for enabling a seamless e-commerce experience for customers. The website is designed to look like a typical e-commerce website with a homepage and a product page.
 
-## Available Scripts
+When customers click on checkout with Hyperswitch , they are taken to the product page, which displays Hyperswitch SDK and a grid of products. Checkout page is displayed with an image, name, price, and a "Buy Now" button. When a customer clicks on the "Buy Now" button, they are prompted to enter their payment information. The checkout process is handled by the Hyperswitch SDK, which securely collects and processes the customer's information.
 
-In the project directory, you can run:
+### The Hyperswitch demo app showcases several features of the Hyperswitch SDK, including:
 
-### `npm start`
+#### 1. Seamless checkout: 
+Customers can complete their purchases with the best payment experience, thanks to the Hyperswitch SDK's integration with multiple payment gateways.
+#### 2. Security: 
+The Hyperswitch SDK uses industry-standard encryption and security protocols to protect customer information.
+#### 3. Customizability: 
+The SDK can be easily customized to match the branding and style of any e-commerce website.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Overview
 
-### `npm test`
+<img width="1412" alt="Screen Shot 2023-03-06 at 12 55 53 PM" src="https://user-images.githubusercontent.com/126236898/223044972-a8e16b76-f597-4181-8e48-796d3c533fb4.png">
+<img width="1413" alt="Screen Shot 2023-03-06 at 12 56 28 PM" src="https://user-images.githubusercontent.com/126236898/223045060-20e79930-fc35-4a31-9a2f-7c03682cd012.png">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+The demo app provides all in one example for integration with Hyperswitch on th web
+|  Feature  | Description |
+| ------------- | ------------- |
+|  **Beautiful UI Component**  | Demo uses a unified checkout element called ```Payment Element``` to fit in the checkout page, including many payments methods with real time validations of the customer information , formatting and autofill. |
+| **Multiple payment methos**  | The app offers multiple payment methods along with **Card Payments ,Google Pay, Apple Pay, Paypal** with single integration of ```Payment Element```.|
+| **Bank redirects**  | A redirect-based payment is support through **Paypal, Afterpay, Klarna, Affirm, Giropay, SOFORT, iDEAL, EPS**.|
+| **Country support**  | Picking a country from the dropdown will automatically filter payments supported for the selected country.|
+| **Dynamic 3D Secure for Visa and Mastercard**| The app automatically handles the correct flow to complete card payments with **3D Secure**, whether it’s required by the card or encoded in one of your 3D Secure Radar rules.|
+|**Responsive design**| The checkout experience works on all screen sizes. **Note:** Apple Pay works on Safari if the Wallet is enabled.|
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
