@@ -63,7 +63,8 @@ Install all the dependencies from package.json
 Merchant app will be running on http://localhost:3000/ .
 
 
-<img width="1411" alt="Screen Shot 2023-03-06 at 4 35 12 PM" src="https://user-images.githubusercontent.com/126236898/223093451-5e63a694-49e3-468b-89e7-a426be0586b9.png">
+<img width="1412" alt="Screen Shot 2023-03-06 at 4 42 34 PM" src="https://user-images.githubusercontent.com/126236898/223094915-0e8ccdb9-61ec-4ed9-91b0-52ec5e9584da.png">
+
 
 <img width="1413" alt="Screen Shot 2023-03-06 at 4 37 58 PM" src="https://user-images.githubusercontent.com/126236898/223093955-34e314af-72a2-4f41-9d3a-6e92606412b2.png">
 
