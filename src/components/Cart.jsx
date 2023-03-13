@@ -1,8 +1,10 @@
 import './style.css';
 import './CartItems'
 import CartItems from './CartItems';
+import { useNavigate } from 'react-router-dom';
 export default function Cart({setOpenSDK}) {
   var ele = document.getElementsByClassName('select')
+  const navigate = useNavigate();
   return (
   <div className="Cart">
     <div className='orderSummary'>Order summary (2)</div>
@@ -20,6 +22,7 @@ export default function Cart({setOpenSDK}) {
               // document.getElementById("uniqueSelect").style.display = "none"
               // document.getElementById("earlyAccess").style.display = "flex"
               // document.getElementById("earlyAccess").style.justifyContent = "end"
+              navigate("/checkout")
               setOpenSDK(true)
             }}>Checkout with Hyperswitch</button>
         </div>

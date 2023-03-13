@@ -6,6 +6,7 @@ import { Elements, useHyper } from "@juspay-tech/react-hyper-js";
 import SDK from './SDK'
 import CartItems from './CartItems';
 import Confirm from './Confirm';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 function ElementsComp ({options, options1}) {
   // Pass the publishable key to loadHyper and pass this instance to the Elements wrapper
   const hyperPromise = loadHyper("pk_snd_3b33cd9404234113804aa1accaabe22f");
@@ -152,7 +153,7 @@ export default function Workspace({clientSecret, savedMethods}) {
       
       wallets: {
         // Make sure you change this to your payment completion page
-        walletReturnUrl: "https://demo-hyperswitch.netlify.app/",
+        walletReturnUrl: "https://demo-hyperswitch.netlify.app/success",
         applePay: "auto",
         googlePay: "auto",
         style: {
@@ -187,28 +188,35 @@ export default function Workspace({clientSecret, savedMethods}) {
         {/* Pass the options as a prop to the elements wrapper */}
         {savedMethods && <ElementsComp key={options.clientSecret} options={options} options1={options1}/>}
       </div>
-    var ele = showSDK && !confirmStatus ? (
-      <>
-          <div className='body1'>
-              {elements}
-          </div>
-          <div className='body2'>
-              <div className='containerText'>Order Summary</div>
-              <CartItems/>
-              <div className='paymentDescription'>
-                  <div className="textbox">
-                  This is a sample transaction that uses test credentials and does not involve real money.
-                  </div>
-              </div>
-          </div>
-      </>
-      ): !showSDK && !confirmStatus 
-          ?(<Cart setOpenSDK={setShowSDK}/>)
-          : (<Confirm status={confirmStatus}/>)
+
+    var sdk = 
+    <>
+      <div className='body1'>
+        {elements}
+      </div>
+      <div className='body2'>
+        <div className='containerText'>Order Summary</div>
+        <CartItems/>
+        <div className='paymentDescription'>
+            <div className="textbox">
+            This is a sample transaction that uses test credentials and does not involve real money.
+            </div>
+        </div>
+      </div>
+    </>
+
+    var homepage = <Cart setOpenSDK={setShowSDK}/>
+    var success = <Confirm status={confirmStatus}/>
 
     return (
     <div className="Container">
-        {ele}
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={homepage} />
+                <Route path="/checkout" element={sdk} />
+                <Route path="/success" element={success} />
+            </Routes>
+        </BrowserRouter>
     </div>
     )
 }

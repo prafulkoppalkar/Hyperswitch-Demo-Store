@@ -25,7 +25,7 @@ export default function SDK({options1}) {
           elements,
           confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: "https://demo-hyperswitch.netlify.app/",
+            return_url: "https://demo-hyperswitch.netlify.app/success",
           },
         });
         console.log("ERORR", error)
