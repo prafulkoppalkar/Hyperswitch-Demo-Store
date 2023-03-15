@@ -6,13 +6,13 @@ import { Elements, useHyper } from "@juspay-tech/react-hyper-js";
 import SDK from './SDK'
 import CartItems from './CartItems';
 import Confirm from './Confirm';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
-function ElementsComp ({options, options1}) {
+import { BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
+function ElementsComp ({options, options1, setStatus}) {
   // Pass the publishable key to loadHyper and pass this instance to the Elements wrapper
   const hyperPromise = loadHyper("pk_snd_3b33cd9404234113804aa1accaabe22f");
   return (
     <Elements options={options} stripe={hyperPromise}>
-      <SDK options1={options1}/>
+      <SDK options1={options1} setStatus={setStatus}/>
     </Elements>
   )
 }
@@ -186,7 +186,7 @@ export default function Workspace({clientSecret, savedMethods}) {
     var elements = 
       <div className='elements'>
         {/* Pass the options as a prop to the elements wrapper */}
-        {savedMethods && <ElementsComp key={options.clientSecret} options={options} options1={options1}/>}
+        {savedMethods && <ElementsComp key={options.clientSecret} options={options} options1={options1} setStatus={setStatus}/>}
       </div>
 
     var sdk = 

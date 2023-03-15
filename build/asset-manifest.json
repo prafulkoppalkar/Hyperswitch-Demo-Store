@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1a7c540f.css",
-    "main.js": "/static/js/main.7ed6a38a.js",
+    "main.js": "/static/js/main.1024e046.js",
     "static/js/787.41346b49.chunk.js": "/static/js/787.41346b49.chunk.js",
     "static/media/broken-credit-card-debt-bankruptcy-failed-money-transaction-vector-stock-illustration-262717746.jpeg": "/static/media/broken-credit-card-debt-bankruptcy-failed-money-transaction-vector-stock-illustration-262717746.31077ac9225607b12e71.jpeg",
     "static/media/Framehyperswitch.svg": "/static/media/Framehyperswitch.5ba499ba10d0ce44195dcf70e90f4db3.svg",
@@ -9,11 +9,11 @@
     "static/media/Successsuccess.svg": "/static/media/Successsuccess.5789e33b69b916d8485c1e6de79d60fa.svg",
     "index.html": "/index.html",
     "main.1a7c540f.css.map": "/static/css/main.1a7c540f.css.map",
-    "main.7ed6a38a.js.map": "/static/js/main.7ed6a38a.js.map",
+    "main.1024e046.js.map": "/static/js/main.1024e046.js.map",
     "787.41346b49.chunk.js.map": "/static/js/787.41346b49.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1a7c540f.css",
-    "static/js/main.7ed6a38a.js"
+    "static/js/main.1024e046.js"
   ]
 }
